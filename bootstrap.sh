@@ -4,6 +4,7 @@ reset=`tput sgr0`
 echo "${green}Welcome to http-schemas webserver example!"
 echo "Installing npm packages across client, server, and shared/http"
 echo "||----------------------------------------------------------||${reset}"
+mkdir -p server/build
 cd shared/http && npm i --ci && cd ../../client && npm i --ci && cd ../server && npm i --ci
 echo "${green}"
 echo "||----------------------------------------------------------||"

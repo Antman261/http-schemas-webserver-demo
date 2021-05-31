@@ -7,5 +7,8 @@
     "bootstrap": "./bootstrap.sh"
   },
   "author": "",
+  "prettier": {
+    "singleQuote": true
+  },
   "license": "ISC"
 }
