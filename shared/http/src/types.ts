@@ -1,12 +1,10 @@
 import { t } from "http-schemas";
 
-export const ChoiceInput = t.object({
+export const ChoiceInput = t.string;
+
+export const Choice = t.object({
   text: t.string,
   votes: t.number,
-});
-
-const Choice = t.object({
-  ...ChoiceInput.properties,
   id: t.number,
 });
 
@@ -15,10 +13,11 @@ const PollTypes = t.union(t.unit('OPEN'), t.unit('FIXED'));
 export const PollInput = t.object({
   text: t.string,
   type: PollTypes,
-  choices: t.array(Choice),
+  choices: t.array(ChoiceInput),
 });
 
 export const Poll = t.object({
   ...PollInput.properties,
+  choices: t.array(Choice),
   id: t.number,
 });

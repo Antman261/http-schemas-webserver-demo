@@ -24,7 +24,14 @@ export const pollsApiSchema = createHttpSchema([
   createHttpRoute({
     method: 'POST',
     path: '/polls/:id/choices',
+    paramNames: ['id'],
     requestBody: ChoiceInput,
+    responseBody: Poll,
+  }),
+  createHttpRoute({
+    method: 'POST',
+    path: '/polls/:id/choices/:choiceId/vote',
+    paramNames: ['id', 'choiceId'],
     responseBody: Poll,
   })
 ]);
