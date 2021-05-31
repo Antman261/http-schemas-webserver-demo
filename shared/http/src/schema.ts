@@ -1,6 +1,8 @@
 import {createHttpRoute, createHttpSchema, t} from "http-schemas";
 import {ChoiceInput, Poll, PollInput} from "./types";
 
+const ErrorBody = t.object({error: t.string})
+
 export const pollsApiSchema = createHttpSchema([
   createHttpRoute({
     method: 'GET',
@@ -13,7 +15,7 @@ export const pollsApiSchema = createHttpSchema([
     method: 'GET',
     path: '/polls/:id',
     paramNames: ['id'],
-    responseBody: Poll
+    responseBody: t.union(Poll, ErrorBody),
   }),
   createHttpRoute({
     method: 'POST',
@@ -25,13 +27,13 @@ export const pollsApiSchema = createHttpSchema([
     method: 'POST',
     path: '/polls/:id/choices',
     paramNames: ['id'],
-    requestBody: ChoiceInput,
-    responseBody: Poll,
+    requestBody: t.object({text: ChoiceInput}),
+    responseBody: t.union(Poll, ErrorBody),
   }),
   createHttpRoute({
     method: 'POST',
     path: '/polls/:id/choices/:choiceId/vote',
     paramNames: ['id', 'choiceId'],
-    responseBody: Poll,
+    responseBody: t.union(Poll, ErrorBody),
   })
 ]);

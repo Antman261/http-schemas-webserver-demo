@@ -5,7 +5,11 @@ import helmet from 'helmet';
 import { STATIC_PATH, staticMiddleware } from './routes/static.js';
 import { decorateExpressRouter } from 'http-schemas/server.js';
 import { pollsApiSchema } from 'http-schema';
-import { getPollsRouteHandler, postPollsRouteHandler } from './routes/polls.js';
+import {
+  getPollByIdRouteHandler,
+  getPollsRouteHandler, postChoiceRouteHandler,
+  postPollsRouteHandler, postVoteRouteHandler
+} from './routes/polls.js';
 import { validationErrorHandler } from './routes/validationErrorHandler.js';
 
 const PORT = 8080;
@@ -24,11 +28,22 @@ app.use(
 );
 app.use(express.json());
 app.use(staticMiddleware);
-app.use('/api', pollsApi);
 
+
+/////////////////////////////
+// ***** API ROUTES *********
+/////////////////////////////
+app.use('/api', pollsApi);
 pollsApi.get('/polls', getPollsRouteHandler);
 pollsApi.post('/polls', postPollsRouteHandler);
+pollsApi.get('/polls/:id', getPollByIdRouteHandler);
+pollsApi.post('/polls/:id/choices', postChoiceRouteHandler);
+pollsApi.post('/polls/:id/choices/:choiceId/vote', postVoteRouteHandler);
 
+
+///////////////////////////////
+// *** FALL-THRU FOR SPA *** //
+///////////////////////////////
 app.get('*', (req, res) => {
   res.sendFile(`${STATIC_PATH}/index.html`);
 });
