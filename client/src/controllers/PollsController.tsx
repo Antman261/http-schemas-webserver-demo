@@ -1,10 +1,19 @@
 import * as React from "react";
+import {usePolls} from "../hooks/usePolls";
+import {apiClient} from "../apiClient";
 
-type Props = {};
-
-export const PollsController = (props: Props) => {
-  const
+export const PollsController = () => {
+  const polls = usePolls(apiClient);
   return (
-    <div/>
+    <div>
+      {polls.length ?
+        polls.map(poll => (
+        <div>
+          <h2>{poll.text}</h2>
+        </div>
+      )) : (
+        <h2>No polls found...</h2>
+        )}
+    </div>
   );
 }

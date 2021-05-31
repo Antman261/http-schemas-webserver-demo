@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import {PollsController} from "./controllers/PollsController";
 
 function App() {
   return (
