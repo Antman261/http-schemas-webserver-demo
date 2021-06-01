@@ -2,6 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import compression from 'compression';
 import helmet from 'helmet';
+import cors from 'cors';
 import { STATIC_PATH, staticMiddleware } from './routes/static.js';
 import { decorateExpressRouter } from 'http-schemas/server.js';
 import { pollsApiSchema } from 'http-schema';
@@ -27,6 +28,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(cors());
 app.use(staticMiddleware);
 
 

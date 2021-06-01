@@ -1,7 +1,7 @@
 import {createHttpRoute, createHttpSchema, t} from "http-schemas";
 import {ChoiceInput, Poll, PollInput} from "./types";
 
-const ErrorBody = t.object({error: t.string})
+export const ErrorBody = t.object({error: t.string})
 
 export const pollsApiSchema = createHttpSchema([
   createHttpRoute({
