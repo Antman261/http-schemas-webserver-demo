@@ -1,5 +1,5 @@
 import { PollsRepo } from './index';
-import { Choice, Poll } from 'http-schema';
+import { Choice, Poll } from 'api-schema';
 
 const polls: Poll[] = [];
 

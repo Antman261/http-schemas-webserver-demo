@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Alert, Button, Col, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import {useState} from "react";
-import {PollInput} from "http-schema";
+import {PollInput} from "api-schema";
 import {ChoiceForm} from "./ChoiceForm";
 
 type Props = {

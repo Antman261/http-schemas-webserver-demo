@@ -1,6 +1,6 @@
 import {pollsRepo} from "../../repositories/polls/memory.js";
 import {PollsRepo} from "../../repositories/polls";
-import {Poll} from "http-schema";
+import {Poll} from "api-schema";
 
 type AddVoteOutcome = {
   poll?: Poll;

@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import { STATIC_PATH, staticMiddleware } from './routes/static.js';
 import { decorateExpressRouter } from 'http-schemas/server.js';
-import { pollsApiSchema } from 'http-schema';
+import { pollsApiSchema } from 'api-schema';
 import {
   getPollByIdRouteHandler,
   getPollsRouteHandler, postChoiceRouteHandler,

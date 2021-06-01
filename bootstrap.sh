@@ -5,7 +5,7 @@ echo "${green}Welcome to http-schemas webserver example!"
 echo "Installing npm packages across client, server, and shared/http"
 echo "||----------------------------------------------------------||${reset}"
 mkdir -p server/build
-cd shared/http && npm i --ci && cd ../../client && npm i --ci && cd ../server && npm i --ci
+cd shared/http && npm i --ci && npm run build && cd ../../client && npm i --ci && npm run build && cd ../server && npm i --ci && npm run build
 echo "${green}"
 echo "||----------------------------------------------------------||"
 echo "Installation complete, here's the commands you need to know:"

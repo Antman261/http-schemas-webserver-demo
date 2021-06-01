@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+# client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Similar to the server, we can utilise our `api-schema` types throughout the client code. Additionally, we can use a client api package provided by `http-schemas` to:
+* Add type checking to our path parameters and json request bodies.
+* Add type information to the response data returned from our API.
 
-## Available Scripts
+We initialise this api client in `src/apiClient.ts`:
 
-In the project directory, you can run:
+```ts
+import {createHttpClient} from "http-schemas/client";
+import {pollsApiSchema} from "api-schema";
 
-### `npm start`
+const baseURL = 'http://localhost:8080/api';
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+export const apiClient = createHttpClient(pollsApiSchema, { baseURL });
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
 
-### `npm test`
+Now we can use it in hooks, such as this one that drives most of the client-side logic:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```ts
+export const usePolls = (apiClient: HttpClient<typeof pollsApiSchema>): UsePollsReturn => {
+  const [status, setStatus] = useState<PollsStatus>('READY');
+  const [polls, setPolls ] = useState<Poll[]>([]);
+  const refreshPolls = async () => {
+    if (status === 'LOADING') {
+      return;
+    }
+    setStatus('LOADING');
+    const result = await apiClient.get('/polls'); // <= Result is { polls: Poll[] }
+    setPolls(result.polls);
+    setStatus('READY');
+  }
+  // REMAINDER TRUNCATED FOR BREVITY
+```
 
-### `npm run build`
+These types can now flow through to the rest of our code, for example here's a snippet of the `Poll.tsx` component:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```tsx
+import * as React from "react";
+import {Button, Card, CardBody, CardHeader, Table} from "reactstrap";
+import {Poll} from "api-schema";
+import {ChoiceRow} from "./ChoiceRow";
+import {useState} from "react";
+import {ChoiceForm} from "./ChoiceForm";
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+type Props = Poll & {
+  createChoiceVoteClickHandler: (choiceId: number) => () => void;
+  onSubmit: (text: string) => void;
+};
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+export const PollCard = ({id, text, type, choices, createChoiceVoteClickHandler, onSubmit}: Props) => {
+  const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
+  return (
+    <Card key={id} className='my-4'>
+      <CardHeader>
+        {type === 'OPEN' ? (
+          <Button className='float-right mt-1'
+                  color='primary'
+                  onClick={() => setIsFormOpen(true)}>
+            Add Choice
+          </Button>
+        ) : (
+          <small className='float-right mt-4 text-muted'>This poll is fixed. You cannot add choices.</small>
+        )}
+        {
+          // TRUNCATED FOR BREVITY
+        }
+```
 
-### `npm run eject`
+## Conclusion
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+That's it! You've read through the full explanation. Feel free to start this project up and play with it yourself. I hope you find the development experience enjoyable!

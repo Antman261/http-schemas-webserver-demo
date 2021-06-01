@@ -7,7 +7,7 @@
     "test": "mocha",
     "watch": "npx mocha -w",
     "build": "npx tsc -p .",
-    "serve": "npx tsc -w -p . & npx nodemon ./build/index.js"
+    "start": "npx tsc -w -p . & npx nodemon ./build/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -46,11 +46,11 @@
     "typescript": "^4.3.2"
   },
   "dependencies": {
+    "api-schema": "file:../shared/http",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
-    "http-schema": "file:../shared/http",
     "http-schemas": "^0.9.1",
     "morgan": "^1.10.0"
   }

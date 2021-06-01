@@ -1,4 +1,4 @@
-import {Poll} from "http-schema";
+import {Poll} from "api-schema";
 
 type ValidateChoiceOutcome = 'VALID' | 'INVALID_POLL_TYPE' | 'DUPLICATE_CHOICE';
 

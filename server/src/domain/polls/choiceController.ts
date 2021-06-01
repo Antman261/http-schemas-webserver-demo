@@ -1,6 +1,6 @@
 import {PollsRepo} from "../../repositories/polls";
 import {validateChoiceForPoll} from "./choiceValidator.js";
-import {Poll} from "http-schema";
+import {Poll} from "api-schema";
 import {pollsRepo} from "../../repositories/polls/memory.js";
 
 type CreateChoiceOutcome = {

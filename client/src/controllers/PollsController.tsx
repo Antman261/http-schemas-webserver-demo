@@ -4,7 +4,7 @@ import {Card, CardBody} from "reactstrap";
 import {usePolls} from "../hooks/usePolls";
 import {apiClient} from "../apiClient";
 import {PollsHeader} from "../components/PollsHeader";
-import {PollInput} from "http-schema";
+import {PollInput} from "api-schema";
 import {useEffect} from "react";
 
 export const PollsController = () => {

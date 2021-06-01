@@ -1,5 +1,5 @@
 import {createHttpClient} from "http-schemas/client";
-import {pollsApiSchema} from "http-schema";
+import {pollsApiSchema} from "api-schema";
 
 const baseURL = 'http://localhost:8080/api';
 

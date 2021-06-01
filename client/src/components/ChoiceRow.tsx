@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Choice} from "http-schema";
+import {Choice} from "api-schema";
 import {Button} from "reactstrap";
 
 type Props = Choice & {

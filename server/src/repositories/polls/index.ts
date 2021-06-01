@@ -1,4 +1,4 @@
-import { Choice, ChoiceInput, Poll, PollInput } from 'http-schema';
+import { Choice, ChoiceInput, Poll, PollInput } from 'api-schema';
 
 export type PollsRepo = {
   getPolls: () => Promise<Poll[]>;

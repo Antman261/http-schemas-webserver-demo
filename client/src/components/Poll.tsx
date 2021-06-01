@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Button, Card, CardBody, CardHeader, Table} from "reactstrap";
-import {Poll} from "http-schema";
+import {Poll} from "api-schema";
 import {ChoiceRow} from "./ChoiceRow";
 import {useState} from "react";
 import {ChoiceForm} from "./ChoiceForm";
@@ -25,7 +25,6 @@ export const PollCard = ({id, text, type, choices, createChoiceVoteClickHandler,
           <small className='float-right mt-4 text-muted'>This poll is fixed. You cannot add choices.</small>
         )}
         <h2>{text}</h2>
-
       </CardHeader>
       <CardBody>
         <Table size={'md'} className='mt-2'>

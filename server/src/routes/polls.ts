@@ -1,5 +1,5 @@
 import { createRequestHandler } from 'http-schemas/server.js';
-import { pollsApiSchema } from 'http-schema';
+import { pollsApiSchema } from 'api-schema';
 import { pollsRepo } from '../repositories/polls/memory.js';
 import {createChoiceViaController} from "../domain/polls/choiceController.js";
 import {isNever} from "../never.js";

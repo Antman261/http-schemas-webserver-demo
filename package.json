@@ -4,7 +4,8 @@
   "description": "An example webserver and client using http-schemas",
   "main": "index.js",
   "scripts": {
-    "bootstrap": "./bootstrap.sh"
+    "bootstrap": "./bootstrap.sh",
+    "start": "./start.sh"
   },
   "author": "",
   "prettier": {

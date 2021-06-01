@@ -1,5 +1,5 @@
 {
-  "name": "http-schema",
+  "name": "api-schema",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index",
@@ -12,7 +12,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc -p ."
+    "build": "npx tsc -p .",
+    "start": "npx tsc -w -p ."
   },
   "prettier": {
     "singleQuote": true

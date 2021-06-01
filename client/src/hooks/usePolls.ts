@@ -1,5 +1,5 @@
 import {HttpClient} from "http-schemas/client";
-import {ErrorBody, Poll, pollsApiSchema} from "http-schema";
+import {ErrorBody, Poll, pollsApiSchema} from "api-schema";
 import {useEffect, useState} from "react";
 
 export type PollsStatus = 'LOADING' | 'READY';

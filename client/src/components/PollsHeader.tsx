@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Button, Card, CardBody, CardHeader, CardSubtitle} from "reactstrap";
 import {PollsStatus} from "../hooks/usePolls";
-import {PollInput} from "http-schema";
+import {PollInput} from "api-schema";
 import {useState} from "react";
 import {AddPollForm} from "./AddPollForm";
 
