@@ -11,8 +11,6 @@ RUN ./docker-build.sh
 
 FROM build AS deploy
 
-COPY ./server ./server
-
 WORKDIR /root/polls-server/server
 
 CMD node ./build/index.js
